@@ -1,0 +1,155 @@
+<?php
+    $data = json_decode($this->rsce_data);
+    foreach($data as $key => $value) {
+        $isAnswer = strpos($key, 'answers') !== false;
+        if($isAnswer) {
+            $unserializedArray = unserialize($value);
+            $data->$key = $unserializedArray;
+        }
+    }
+    $data = json_encode($data);
+?>
+
+<div class="quiz">
+
+</div>
+<div id="overlay">
+    <div class="popup">
+    </div>
+</div>
+
+<script>
+  const languageContent = {
+    en: {
+      right: 'Right!',
+      wrong: 'Sorry, that\'s wrong',
+      quizOver: 'Finish!',
+      restart: 'Restart quiz',
+      yourScore: 'Your score',
+      hint: 'Hint: ',
+      back: 'Back: '
+    },
+    de: {
+      right: 'Richtig!',
+      wrong: 'Leider falsch',
+      quizOver: 'Quiz beendet!',
+      restart: 'Quiz neu starten',
+      yourScore: 'Deine Punktzahl',
+      hint: 'Tipp: ',
+      back: 'Zurück'
+    }
+  };
+  const language = '{{page::language}}';
+  const quizContainer = document.querySelector('.quiz');
+  const hintContainer = document.createElement('p');
+  const answerContainer = document.createElement('ul');
+  const quizOverlay = document.getElementById('overlay');
+  const popup = document.querySelector('.popup');
+  const popupHeadline = document.createElement('h3');
+  const restartButton = document.querySelector('.restart-quiz-button');
+  const backButton = document.createElement('div');
+  const backButtonText = document.createTextNode(languageContent[language].back);
+  let score = 0;
+  let currentQuestion = 0;
+  let allQuestions = [];
+  let lastAnswerWasRight = false;
+  hintContainer.classList.add('hint');
+  backButton.appendChild(backButtonText);
+  backButton.classList.add('back-button');
+
+  (function prepareData() {
+    const data = <?= $data ?>;
+    let question = new Object;
+    for(let entry in data) {
+      const isQuestion = entry.includes('question') && data[entry].length > 0;
+      const isAnswers = entry.includes('answers') && data[entry].length > 0;
+      const isHint = entry.includes('hint') && data[entry].length > 0;
+      if(isQuestion) {
+        question = {};
+        question.question = data[entry];
+      }
+      if(isHint) {
+        question.hint = data[entry];
+      }
+      if(isAnswers) {
+        question.answers = data[entry];
+        allQuestions.push(question);
+      }
+    }
+  })();
+
+  const restartQuiz = (event) => {
+    event.preventDefault();
+    showQuestion(0);
+  }
+
+  const endQuiz = (score, length) => {
+    quizOverlay.style.display = 'none';
+    popup.style.display = 'none';
+    quizContainer.innerHTML = `<h3>${languageContent[language]['quizOver']}</h3><p>${languageContent[language].yourScore}: ${score}/${length}</p><a href="#" class="restart-quiz-button" onclick="restartQuiz(event)">${languageContent[language].restart}</a>`;
+    answerContainer.remove();
+  }
+
+  const showQuestion = (number, lastAnswerWasRight) => {
+    const backButtonHandler = () => {
+      if(lastAnswerWasRight) {
+        score--;
+      }
+      showQuestion(number-1);
+      backButton.removeEventListener('click', backButtonHandler, true);
+    }
+
+    currentQuestion = number;
+    const question = allQuestions[number];
+    quizOverlay.style.display = 'none';
+    popup.style.display = 'none';
+    popupHeadline.innerHTML = '';
+    quizContainer.innerHTML = '';
+    answerContainer.innerHTML = '';
+    quizContainer.innerHTML += `<p>${question.question}</p>`;
+    hintContainer.innerHTML = '';
+    if(number > 0) {
+        quizContainer.prepend(backButton);
+        backButton.addEventListener('click', backButtonHandler, true);
+    }
+    if(question.hint) {
+      hintContainer.innerHTML = languageContent[language]['hint'] + question.hint;
+      quizContainer.appendChild(hintContainer);
+    }
+    quizContainer.appendChild(answerContainer);
+    question.answers.forEach(answer => {
+      const isRight = answer['default'] !== undefined;
+      const listElement = document.createElement('li');
+      const button = document.createElement('a');
+      const buttonText = document.createTextNode(answer['label']);
+      button.appendChild(buttonText);
+      listElement.appendChild(button);
+      answerContainer.appendChild(listElement);
+      button.addEventListener('click', function(event) {
+        event.preventDefault();
+        quizOverlay.style.display = 'block';
+        popup.style.display = 'block';
+        popup.appendChild(popupHeadline);
+        if(isRight) {
+          popupHeadline.innerHTML += `${languageContent[language].right}`;
+          score++;
+          lastAnswerWasRight = true;
+        } else {
+          popupHeadline.innerHTML += `${languageContent[language].wrong}`;
+          lastAnswerWasRight = false;
+        }
+        setTimeout(function(){
+          if(allQuestions[number+1]) {
+            showQuestion(number+1, lastAnswerWasRight);
+          } else {
+            endQuiz(score, allQuestions.length);
+            score = 0;
+          }
+        }, 1800)
+      })
+    })
+  }
+
+  showQuestion(0);
+
+</script>

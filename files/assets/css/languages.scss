@@ -1,0 +1,59 @@
+@import 'variables.scss';
+
+.mod_changelanguage {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: -100%;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: visible;
+  font-size: 23px;
+  background-image: linear-gradient(to left, #0089c1, black);
+  z-index: 500;
+  transition: top 850ms cubic-bezier(.03,.63,.4,1.01);
+  ul {
+    width: 85%;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+    li {
+      width: 100%;
+      &:not(:last-child) {
+        border-bottom: 1px solid white;
+      }
+      a,strong {
+        display: block;
+        width: 100%;
+        font-size: 30px;
+        padding: 10px 45px;
+        position: relative;
+        font-weight: bold;
+        color: white;
+        text-transform: uppercase;
+        &:before {
+          position: absolute;
+          left: 0;
+          top: 12px;
+          font-family: 'Weimar', sans-serif;
+          content: 'C';
+          color: $primary-color;
+        }
+      }
+      &.active strong {
+        color: $primary-color;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+.language-switcher-close {
+  position: absolute;
+  top: 5vw;
+  right: 5vw;
+  font-size: 100px;
+  line-height: 0;
+  cursor: pointer;
+}

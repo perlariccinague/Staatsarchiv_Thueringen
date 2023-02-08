@@ -1,0 +1,52 @@
+@import 'variables';
+
+#container #main .inside .mod_article:not(#startpage) {
+  .ce_text.text-before-video {
+    width: 500px;
+    transform: none;
+    left: 60px;
+  }
+  .ce_player {
+    &.last {
+      &:nth-child(2),&:nth-child(3) {
+        position: absolute;
+        top: 0;
+        right: 60px;
+        width: 1250px;
+      }
+    }
+    h1,h2,h3,h4,h5,h6 {
+      margin: 0 0 20px;
+      text-align: center;
+    }
+    h2 {
+      font-size: 34px;
+    }
+    figure.video_container {
+      height: 550px;
+      text-align: center;
+      &:nth-child(3) {
+        height: 80%;
+      }
+      video {
+        max-width: initial;
+        height: 100%;
+      }
+    }
+  }
+}
+
+.video-caption {
+  display: none;
+  position: fixed;
+  bottom: 2vh;
+  left: 5vw;
+  z-index: 2147483647;
+  > p {
+    font-size: 45px;
+    background: black;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}

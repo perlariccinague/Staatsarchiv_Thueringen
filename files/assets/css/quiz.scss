@@ -1,0 +1,88 @@
+@import 'variables.scss';
+
+.quiz {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 576px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  overflow: visible;
+  font-size: 22px;
+  p {
+    color: black;
+    font-weight: bold;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+      margin: 10px 0;
+
+      a {
+        background-color: #0089c1;
+        font-weight: normal;
+        padding: 10px 15px;
+        display: block;
+        width: 400px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,.85);
+  z-index: 300;
+  .popup {
+    display: none;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    width: 20vw;
+    height: 10vw;
+    background: white;
+    box-shadow: 0 0 20px white;
+    transform: translate(-50%, -50%);
+    z-index: 400;
+    h3 {
+      text-align: center;
+      top: 25px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 27px;
+    }
+  }
+}
+
+.restart-quiz-button {
+  display: block;
+  width: 350px;
+  background: $primary-color;
+  padding: 10px 15px;
+  text-transform: uppercase;
+  color: white;
+  text-decoration: none;
+}
+
+.quiz .hint {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.back-button {
+  display: inline-block;
+  padding: 10px 12px;
+  color: white;
+  background: #8e8e8e;
+  cursor: pointer;
+}

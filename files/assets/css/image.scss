@@ -1,0 +1,17 @@
+@import 'variables.scss';
+
+#container #main .inside .mod_article .ce_image {
+  width: 75%;
+  margin: 0 auto;
+}
+
+#container #main .inside .mod_article .ce_image.first.last {
+  height: 550px;
+  figure {
+    height: 100%;
+    img {
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}

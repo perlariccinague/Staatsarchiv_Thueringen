@@ -1,0 +1,14 @@
+@import 'variables.scss';
+
+#container #main .mod_article:not(#startpage) .ce_text {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75%;
+  box-sizing: border-box;
+  overflow: visible;
+  font-size: 23px;
+  &:last-child {
+    padding-bottom: 200px;
+  }
+}

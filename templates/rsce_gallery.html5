@@ -1,0 +1,63 @@
+<script src="files/assets/js/pdfjs/build/pdf.js"></script>
+<script>
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    'files/assets/js/pdfjs/build/pdf.worker.js';
+  let loadingTask;
+</script>
+<div id="gallery">
+  <ul>
+      <?php
+          $objFile = \Contao\FilesModel::findByUuid($this->imagesFolder);
+          $strPath = $objFile->path;
+          $allFiles = scandir($strPath);
+      ?>
+        <?php foreach($allFiles as $file): ?>
+          <?php
+            $fileNameSeperated = explode('.', $file);
+            $fileType = array_pop($fileNameSeperated);
+            $isImage = $fileType === 'jpg' || $fileType === 'png' || $fileType === 'jpeg' || $fileType === 'gif';
+            $isPDF = $fileType === 'pdf' || $fileType === 'PDF';
+          ?>
+            <?php if($isImage ||$isPDF): ?>
+                <li>
+                    <figure>
+                        <a href="{{file::<?= $this->imagesFolder ?>}}/<?= $file ?>">
+                            <?php if($isImage): ?>
+                                <img src="{{file::<?= $this->imagesFolder ?>}}/<?= $file ?>">
+                            <?php elseif($isPDF): ?>
+                                <canvas id="<?= $file ?>"></canvas>
+                                <script>
+                                    loadingTask = pdfjsLib.getDocument(`{{file::<?= $this->imagesFolder ?>}}/<?= $file ?>`);
+                                    (async () => {
+                                      const pdf = await loadingTask.promise;
+                                      const page = await pdf.getPage(1);
+                                      const scale = 1.5;
+                                      const viewport = page.getViewport({ scale });
+                                      const outputScale = window.devicePixelRatio || 1;
+                                      const canvas = document.getElementById("<?= $file ?>");
+                                      const context = canvas.getContext("2d");
+
+                                      canvas.width = Math.floor(viewport.width * outputScale);
+                                      canvas.height = Math.floor(viewport.height * outputScale);
+                                      canvas.style.width = Math.floor(viewport.width) + "px";
+                                      canvas.style.height = Math.floor(viewport.height) + "px";
+
+                                      const transform = outputScale !== 1
+                                        ? [outputScale, 0, 0, outputScale, 0, 0]
+                                        : null;
+                                      const renderContext = {
+                                        canvasContext: context,
+                                        transform,
+                                        viewport,
+                                      };
+                                      page.render(renderContext);
+                                    })();
+                                </script>
+                            <?php endif; ?>
+                        </a>
+                    </figure>
+                </li>
+            <?php endif; ?>
+        <?php endforeach; ?>
+  </ul>
+</div>

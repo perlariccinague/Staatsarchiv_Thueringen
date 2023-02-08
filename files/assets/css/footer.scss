@@ -1,0 +1,26 @@
+@import 'variables.scss';
+
+#footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height: 60px;
+  background-image: linear-gradient(to right, $primary-color, black);
+  box-shadow: -25px -60px 40px white;
+  font-size: 20px;
+  .inside {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    .mod_article {
+      width: 1800px;
+      margin: 0 auto;
+    }
+  }
+}
+
+.language-select,.homepage {
+  #footer {
+    box-shadow: none;
+  }
+}

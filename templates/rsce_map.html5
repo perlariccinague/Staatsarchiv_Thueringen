@@ -1,0 +1,6 @@
+<div>
+    <p>
+        Y-Koordinaten: <?= $this->yCoords ?>
+        X-Koordinaten: <?= $this->xCoords ?>
+    </p>
+</div>

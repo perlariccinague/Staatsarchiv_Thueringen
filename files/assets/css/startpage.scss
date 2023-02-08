@@ -1,0 +1,59 @@
+@import 'variables.scss';
+
+#container #main #startpage {
+  margin: 49px auto;
+  min-height: initial;
+}
+
+#startpage {
+  width: 1800px;
+  display: grid;
+  grid-template-columns: 16% 16% 16% 16% 16% 16%;
+  grid-template-rows: 50% 50%;
+  grid-gap: 14px;
+  .ce_text {
+    position: relative;
+    h3, p {
+      position: absolute;
+      left: 0;
+      padding: 5px 10px;
+      background: rgba(0,137,193,.7);
+      pointer-events: none;
+    }
+    h3 {
+      bottom: 40px;
+      font-size: 30px;
+    }
+    p {
+      bottom: 0;
+      font-size: 25px;
+    }
+  }
+  figure {
+    width: 100%;
+    height: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .first {
+    grid-row-start: 1;
+    grid-row-end: 1;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+  .second {
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 3;
+    grid-column-end: 5;
+  }
+  .seventh {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 5;
+    grid-column-end: 7;
+  }
+}

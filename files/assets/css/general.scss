@@ -1,0 +1,106 @@
+@import 'variables.scss';
+
+@font-face {
+  font-family: 'Weimar';
+  src: url("../fonts/weimar.ttf");
+}
+
+body {
+  color: white;
+  font-family: 'Source Sans Pro', sans-serif;
+  overflow-x: hidden;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.icon-font {
+  font-family: 'Weimar', sans-serif;
+  color: $primary-color;
+}
+
+figure {
+  margin-bottom: -6px;
+}
+
+.arrow-link {
+  position: relative;
+  padding-left: 25px;
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  &:before {
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-family: 'Weimar', sans-serif;
+    content: 'C';
+    color: $primary-color;
+  }
+}
+
+.fullscreen-image {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20000;
+  &.portrait {
+    height: 80%;
+  }
+  &.landscape {
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+  }
+}
+
+.fullscreen-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 200;
+  background-color: rgba(0,0,0,.85);
+}
+
+.fullscreen-close-icon {
+  display: none;
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  font-size: 100px;
+  color: $primary-color;
+  z-index: 20000;
+  line-height: 0.5em;
+  cursor: pointer;
+  user-select: none;
+  background: white;
+  border-radius: 50%;
+  border: 5px solid $primary-color;
+  padding: 20px;
+}
+
+.zoom-icon {
+  content: '';
+  background: url('../layout/zoom.svg');
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  pointer-events: none;
+  z-index: 2000;
+}
+
+.mod_article .ce_image  {
+  z-index: 200;
+  position: relative;
+}
+ 

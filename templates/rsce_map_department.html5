@@ -1,0 +1,19 @@
+<div class="department-popup" id="<?= strtolower($this->department) . '-popup' ?>">
+		
+    <div class="department-popup-info">
+    	 <img src="{{file::<?= $this->image ?>}}">
+    	<h2><?= $this->titel ?></h2>
+        <p>
+          <span><strong><?= $this->address_street ?></strong></span>
+          <span><strong><?= $this->address_number ?></strong></span><br>
+          <span><strong><?= $this->address_zip ?></strong></span>
+          <span><strong><?= $this->department ?></strong></span><br>
+        </p>
+        <p class="description"><?= $this->description ?></p>
+         
+    </div>
+  
+</div>
+<div class="department-button" id="<?= 'button-' . strtolower($this->department)?>">
+    <span><?= $this->department ?></span>
+</div>

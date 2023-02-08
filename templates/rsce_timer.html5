@@ -1,0 +1,20 @@
+<script>
+  const timeInMinutes = '<?= $this->time ?>';
+  const targetPage = '{{link_url::<?= $this->targetPage ?>}}';
+  const timeInMs = parseInt(timeInMinutes) * 60000;
+
+  const timer = () => {
+    if (window.location.href !== targetPage) {
+      window.location.href = targetPage;
+    }
+  }
+
+  let resetTimer = setTimeout(timer, timeInMs)
+
+  document.body.addEventListener('click', () => {
+    clearTimeout(resetTimer);
+    resetTimer = setTimeout(timer, timeInMs);
+  }, true);
+
+
+</script>
