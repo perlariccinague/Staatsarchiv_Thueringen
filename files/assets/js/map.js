@@ -13,6 +13,9 @@ closeIcon.addEventListener('click', function() {
   overlay.style.display = "none";
   imgTag.style.display = "none";
   closeIcon.style.display = "none";
+  toggleFullscreen();
+  popupFullscreen();
+  linkFullscreen();
 })
 
 const imageClickHandler = (image) => {
@@ -22,6 +25,9 @@ const imageClickHandler = (image) => {
     imgTag.style.display = 'block';
     overlay.style.display = 'block';
     closeIcon.style.display = 'block';
+    toggleFullscreen();
+    popupFullscreen();
+    linkFullscreen();
   })
 }
 
@@ -37,3 +43,6 @@ if(document.querySelector('#container #main .inside .mod_article .ce_image .imag
     imageClickHandler(image);
   })
 }
+
+
+

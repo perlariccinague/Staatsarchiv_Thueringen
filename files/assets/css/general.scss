@@ -47,7 +47,7 @@ figure {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: 20000;
+  z-index: 200;
   &.portrait {
     height: 80%;
   }
@@ -65,7 +65,7 @@ figure {
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 200;
+  z-index: 1;
   background-color: rgba(0,0,0,.85);
 }
 
@@ -76,7 +76,7 @@ figure {
   right: 50px;
   font-size: 100px;
   color: $primary-color;
-  z-index: 20000;
+  z-index: 201;
   line-height: 0.5em;
   cursor: pointer;
   user-select: none;
@@ -96,7 +96,7 @@ figure {
   height: 45px;
   cursor: pointer;
   pointer-events: none;
-  z-index: 2000;
+  z-index: 5;
 }
 
 .mod_article .ce_image  {

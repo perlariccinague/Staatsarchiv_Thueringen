@@ -22,22 +22,42 @@
     &#weimar-popup {
       top: -41%;
       left: 47%;
+      &.fullscreen-button {
+        top: -30%;
+        left: 36%;
+      }
     }
     &#gotha-popup {
       top: -23%;
       left: 15%;
+      &.fullscreen-button {
+        top: -28%;
+        left: 18%;
+      }
     }
     &#rudolstadt-popup {
       top: 55%;
       left: 50%;
+      &.fullscreen-button {
+        top: 70%;
+        left: 46%;
+      }
     }
     &#meiningen-popup {
       top: 60%;
-      left: 11%;
+      left: 9%;
+      &.fullscreen-button {
+        top: 80%;
+        left: 0;
+      }
     }
     &#altenburg-popup {
       top: 37%;
       left: 63%;
+      &.fullscreen-button {
+        top: 40%;
+        left: 75%;
+      }
     }
     .department-popup-info {
       color: #0089c1;
@@ -60,30 +80,56 @@
     position: absolute;
     cursor: pointer;
     background: wheat;
-    font-size: 18px;
+    font-size: 20px;
     padding: 5px;
-    z-index: 2500;
+    z-index: 200;
     &#button-weimar {
       top: 44%;
       left: 46%;
+      &.fullscreen-button {
+        top: 56%;
+        left: 43%;
+      }
     }
     &#button-gotha {
       top: 44%;
       left: 38%;
+      &.fullscreen-button {
+        top: 59%;
+        left: 30%;
+      }
     }
     &#button-rudolstadt {
       top: 57%;
       left: 44%;
+      &.fullscreen-button {
+        top: 91%;
+        left: 41%;
+      }
     }
     &#button-meiningen {
       top: 64%;
       left: 33%;
+      &.fullscreen-button {
+        top: 105%;
+        left: 21%;
+      }
     }
     &#button-altenburg {
       top: 41%;
       left: 58%;
+      &.fullscreen-button {
+        top: 53%;
+        left: 67.7%;
+
+      }
     }
   }
+}
+
+#container #main .mod_article#departments .department-button.fullscreen-button {
+  z-index: 201;
+  padding: 10px;
 }
 
 #department-overlay {
@@ -94,7 +140,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 1100;
+  z-index: 201;
 }
 
 #container #main .mod_article#department-links {
@@ -102,7 +148,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 75%;
   min-height: initial;
   margin: initial;
   overflow: initial;
@@ -111,21 +157,64 @@
     position: absolute;
     width: 250px;
     height: 28px;
-    right: 35%;
+    right: 35.5%;
+    z-index: 201;
     &#link-altenburg {
-      top: 12%;
+      top: 16%;
+      &.fullscreen-button {
+        top: -3%;
+      }
     }
     &#link-gotha {
-      top: 17%;
+      top: 21.5%;
+      &.fullscreen-button {
+        top: 8%;
+      }
     }
     &#link-meiningen {
-      top: 21%;
+      top: 28%;
+      &.fullscreen-button {
+        top: 19%;
+      }
     }
     &#link-rudolstadt {
-      top: 25%;
+      top: 34%;
+      &.fullscreen-button {
+        top: 31%;
+      }
     }
     &#link-weimar {
-      top: 30%;
+      top: 39.5%;
+      &.fullscreen-button {
+        top: 42%;
+      }
     }
   }
 }
+
+#container #main .mod_article#department-links .department-link.fullscreen-button {
+  height: 41px;
+  width: 465px;
+  right: 21%;
+}
+
+
+.menu-close-link {
+  font-size: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #0089c1;
+  position: absolute;
+  right: 17px;
+  top: 12px;
+  line-height: 0.5em;
+  background: white;
+  border-radius: 50%;
+  border: 5px solid #0089c1;
+  padding: 8px;
+  z-index: 205;
+}
+
+
+
+
